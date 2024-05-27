@@ -142,7 +142,8 @@ class _TabBarScreen extends ConsumerState<TabBarScreen> with SingleTickerProvide
                 height: 50.0 ,
                 child: TabBar(
                     indicatorColor: Colors.white ,
-                    unselectedLabelColor: Colors.grey.shade400 ,
+                    unselectedLabelColor: Colors.grey.shade500 ,
+                    labelColor: Colors.white,
                     controller: _tabController ,
                     tabs: [
                       CustomText(text: '${context.translate!.translate(MainEnum.textChat.name)}'),

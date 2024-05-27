@@ -84,17 +84,17 @@ class _MobileChatPageState extends ConsumerState<MobileChatPage> with _MobileCha
                                             reverse: true ,
                                             itemCount: data.docs.length ,
                                             itemBuilder: (buildContext , int i) {
-                                              final ChatModel _chatModel = ChatModel.fromApp(data.docs.elementAt(i).data());
-                                              final bool _isMe = ConstState.firebaseId != _chatModel.id ;
+                                              final ChatModel chatModel = ChatModel.fromApp(data.docs.elementAt(i).data());
+                                              final bool isMe = ConstState.firebaseId != chatModel.id ;
                                               _isEmpty = data.docs.isEmpty ;
-                                              final ValueKey _valueKey = ValueKey(data.docs.elementAt(i).id) ;
+                                              final ValueKey valueKey = ValueKey(data.docs.elementAt(i).id) ;
 
                                               return SwipeTo(
-                                                key: _valueKey,
+                                                key: valueKey,
                                                 onLeftSwipe: (v) {
-                                                  ref.read(_subTextProv).funcChange(_chatModel.text);
-                                                  _subText = _chatModel.text;
-                                                  ref.read(_checkSubTextProv).funcChange(_chatModel.id);
+                                                  ref.read(_subTextProv).funcChange(chatModel.text);
+                                                  _subText = chatModel.text;
+                                                  ref.read(_checkSubTextProv).funcChange(chatModel.id);
                                                 },
                                                 child: Column(
                                                     children: [
@@ -102,33 +102,33 @@ class _MobileChatPageState extends ConsumerState<MobileChatPage> with _MobileCha
                                                       Card(
                                                         child: Padding(
                                                           padding: const EdgeInsets.all(8.0),
-                                                          child: CustomText(text: _chatModel.date.toDate().toString().substring(0,19),),
+                                                          child: CustomText(text: chatModel.date.toDate().toString().substring(0,19),),
                                                         ),
                                                       ) ,
 
 
                                                       Visibility(
-                                                        visible: _chatModel.subText.isNotEmpty ? false : true,
+                                                        visible: chatModel.subText.isNotEmpty ? false : true,
                                                         child: Align(
-                                                          alignment: _isMe ? Alignment.centerRight: Alignment.centerLeft,
+                                                          alignment: isMe ? Alignment.centerRight: Alignment.centerLeft,
                                                           child: Container(
 
                                                             padding: const EdgeInsets.all(10.0),
                                                             margin: const EdgeInsets.all(10.0),
                                                             decoration:  BoxDecoration(
-                                                                color: _isMe ? ConstColor.normalWhite : _color,
+                                                                color: isMe ? ConstColor.normalWhite : _color,
                                                                 borderRadius: BorderRadius.only(
                                                                   topRight: const Radius.circular(10.0),
                                                                   topLeft: const Radius.circular(10.0),
-                                                                  bottomRight:  Radius.circular(!_isMe ? 10.0: 0.0),
-                                                                  bottomLeft: Radius.circular(_isMe ? 10.0: 0.0),
+                                                                  bottomRight:  Radius.circular(!isMe ? 10.0: 0.0),
+                                                                  bottomLeft: Radius.circular(isMe ? 10.0: 0.0),
                                                                 )
                                                             ),
                                                             child: CustomText(
-                                                              key: _valueKey,
+                                                              key: valueKey,
                                                               fontSize: 17.0,
                                                               maxLine: 1024,
-                                                              text: _chatModel.text,
+                                                              text: chatModel.text,
                                                             ),
                                                           ),
                                                         ) ,
@@ -136,13 +136,13 @@ class _MobileChatPageState extends ConsumerState<MobileChatPage> with _MobileCha
 
 
                                                       Visibility(
-                                                        visible: _chatModel.subText.isEmpty ? false : true,
+                                                        visible: chatModel.subText.isEmpty ? false : true,
                                                         child: Align(
                                                           alignment: Alignment.centerLeft ,
                                                           child: Container(
                                                             margin: const EdgeInsets.all(8.0) ,
                                                             decoration: BoxDecoration(
-                                                                color: _isMe ? ConstColor.normalWhite : _color ,
+                                                                color: isMe ? ConstColor.normalWhite : _color ,
                                                                 borderRadius: const BorderRadius.only(
                                                                   topRight: Radius.circular(15.0) ,
                                                                   bottomRight: Radius.circular(15.0) ,
@@ -184,9 +184,9 @@ class _MobileChatPageState extends ConsumerState<MobileChatPage> with _MobileCha
                                                                                     top: 5.0
                                                                                 ),
                                                                                 child: CustomText(
-                                                                                  key: ValueKey(_chatModel.text),
+                                                                                  key: ValueKey(chatModel.text),
                                                                                   color: ConstColor.lightMainColor ,
-                                                                                  text: _chatModel.subChat != '${widget.data.first} ${widget.data.last}' ? '${context.translate!.translate(MainEnum.textYou.name)}' : _chatModel.subChat ,
+                                                                                  text: chatModel.subChat != '${widget.data.first} ${widget.data.last}' ? '${context.translate!.translate(MainEnum.textYou.name)}' : chatModel.subChat ,
                                                                                   fontSize: 12.0,),
                                                                               ),
                                                                             ) ,
@@ -197,8 +197,8 @@ class _MobileChatPageState extends ConsumerState<MobileChatPage> with _MobileCha
                                                                                     bottom: 5.0
                                                                                 ),
                                                                                 child: CustomText(
-                                                                                    key: ValueKey<String>(_chatModel.subText.toString()),
-                                                                                    text: _chatModel.subText.toString()),
+                                                                                    key: ValueKey<String>(chatModel.subText.toString()),
+                                                                                    text: chatModel.subText.toString()),
                                                                               ),
                                                                             )
 
@@ -213,9 +213,9 @@ class _MobileChatPageState extends ConsumerState<MobileChatPage> with _MobileCha
                                                                 Padding(
                                                                   padding: const EdgeInsets.all(7.0),
                                                                   child: CustomText(
-                                                                      key: ValueKey<String>(_chatModel.text.toString()),
+                                                                      key: ValueKey<String>(chatModel.text.toString()),
                                                                       maxLine: 1024,
-                                                                      text: _chatModel.text.toString()
+                                                                      text: chatModel.text.toString()
                                                                   ),
                                                                 )
                                                               ],

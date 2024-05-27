@@ -25,14 +25,15 @@ class MyApp extends ConsumerWidget {
 
       theme: ThemeData(
             primaryColor: const Color(0xff075E55) ,
+            useMaterial3: false,
             colorScheme: const ColorScheme.light().copyWith(
             primary: ConstColor.lightMainColor ,
             secondary: Colors.white ,
+
             brightness: Brightness.light
           ),
           iconTheme: const IconThemeData(
-            color: ConstColor.normalWhite ,
-
+            color: ConstColor.normalWhite
           ) ,
 
           floatingActionButtonTheme: const FloatingActionButtonThemeData(

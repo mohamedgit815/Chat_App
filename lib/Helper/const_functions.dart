@@ -10,6 +10,7 @@ import 'package:chat_app/ViewModel/State/lang_state.dart';
 import 'package:chat_app/ViewModel/State/theme_state.dart';
 import 'package:http/http.dart' as http;
 //import 'package:flutter_flushbar/flutter_flushbar.dart';
+import 'package:flashy_flushbar/flashy_flushbar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'custom_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -119,6 +120,30 @@ class ConstState {
 
   static StreamSubscription<RemoteMessage> onMessage(BuildContext context) {
     return FirebaseMessaging.onMessage.listen((event) {
+      FlashyFlushbar
+        (
+        leadingWidget: const Icon(
+          Icons.error_outline,
+          color: Colors.black,
+          size: 24,
+        ),
+        message: "event.data.",
+        duration: const Duration(seconds: 1),
+        trailingWidget: IconButton(
+          icon: const Icon(
+            Icons.close,
+            color: Colors.black,
+            size: 24,
+          ),
+          onPressed: () {
+            FlashyFlushbar.cancel();
+          },
+        ),
+        isDismissible: false,
+      ).show(
+      );
+
+
       // Flushbar(
       //   flushbarPosition: FlushbarPosition.TOP,
       //   shouldIconPulse: false,

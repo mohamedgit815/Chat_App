@@ -43,14 +43,15 @@ class _MobileSignUpPage extends ConsumerState<MobileSignUpPage> with _MobileRegi
           child: Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Color(0xff9D84BB),
-                      Color(0xff9A81B7),
-                    ]
-                )
-            ),
+            color: Colors.grey.withOpacity(0.35),
+            // decoration: const BoxDecoration(
+            //     gradient: LinearGradient(
+            //         colors: [
+            //           Color(0xff9D84BB),
+            //           Color(0xff9A81B7),
+            //         ]
+            //     )
+            // ),
             child: LayoutBuilder(
               builder:(BuildContext buildContext , BoxConstraints constraints) => Form(
                 key: _globalKey ,
@@ -234,7 +235,8 @@ class _MobileSignUpPage extends ConsumerState<MobileSignUpPage> with _MobileRegi
                                     builder: (BuildContext buildContext){
                                       return CustomTextButton(
                                         size: const Size(double.infinity,50.0),
-                                        backGroundColor: const Color(0xffCA9EFF),
+                                        backGroundColor: ConstColor.lightMainColor,
+                                        //backGroundColor: const Color(0xffCA9EFF),
                                         borderRadius: BorderRadius.circular(20.0),
                                         onPressed: () async {
                                           return await AuthFunctions.registerAuth(
